@@ -3,29 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cotacao;
-use App\Models\Transportadora;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CotacaoController extends Controller
 {
+    /**
+     * @throws ValidationException
+     */
 
-    /*public function search(Request $request)
+    public function search(Request $request): \Illuminate\Http\JsonResponse
     {
-        //var_dump([$request->input('cep_origem')]);
-
-        $this->validate($request, [
-            'prazo_entrega'  => 'required|numeric',
-            'peso_inicial'   => 'required|numeric|min:0.1',
-            'peso_final'     => 'requirednumeric|min:999999.1',
-            'valor'          => 'required|numeric',
-            'cep_inicio'     => 'required|digits:9',
-            'cep_final'      => 'required|digits:9',
-        ]);
-
-    }*/
-
-    public function search(Request $request)
-    {
+        /**
+         * validate the request
+         */
         $this->validate($request, [
             'peso'   => 'required|numeric|min:0.1',
             'cep_destino'      => 'required|regex:/^\d{5}-\d{3}$/',

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transportadora extends Model
 {
@@ -11,7 +12,10 @@ class Transportadora extends Model
 
     protected $table = 'transportadoras';
 
-    public function servico()
+    /**
+     * @return BelongsTo
+     */
+    public function servico(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Servico::class);
     }
